@@ -63,3 +63,43 @@ let movies = [
       }]
     },
   ]
+
+
+
+const cardContainer = document.getElementById('cardContainer')  
+
+
+showMovies()
+
+function showMovies(){
+
+    movies.map(item =>{
+        let card = document.createElement('div')
+        card.style.border = '1px solid black'
+        card.style.width = '25%'
+        card.style.textAlign = 'center'
+        card.style.margin = '5px'
+
+        let image = document.createElement('img')
+        image.src = item.image
+        image.style.width = '80%'
+
+        let title = document.createElement('div')
+        title.innerText = item.title
+        title.style.fontSize = '25px'
+
+        let year = document.createElement('div')
+        year.innerText = item.year
+
+        let rating = document.createElement('div')
+        rating.innerText = item.rating
+
+        card.appendChild(image)
+        card.appendChild(title)
+        card.appendChild(year)
+        card.appendChild(rating)
+
+        cardContainer.appendChild(card)
+    })
+
+}
