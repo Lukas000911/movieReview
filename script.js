@@ -4,6 +4,7 @@ let movies = [
       title: "Parasite",
       year: "2019",
       rating: "8.6",
+      id: '1',
       description: "Greed and class discrimination threaten the newly formed symbiotic relationship between the wealthy Park family and the destitute Kim clan.",
       comments: []
     },
@@ -12,6 +13,7 @@ let movies = [
       title: "The Queen's Gambit ",
       year: "2020",
       rating: "8.8",
+      id: '2',
       description: "Orphaned at the tender age of nine, prodigious introvert Beth Harmon discovers and masters the game of chess in 1960s USA. But child stardom comes at a price.",
       comments: [{
         name: "John",
@@ -23,6 +25,7 @@ let movies = [
       title: "Joker ",
       year: "2019",
       rating: "8.5",
+      id: '3',
       description: "In Gotham City, mentally troubled comedian Arthur Fleck is disregarded and mistreated by society. He then embarks on a downward spiral of revolution and bloody crime. This path brings him face-to-face with his alter-ego: the Joker.",
       comments: [
         {
@@ -40,6 +43,7 @@ let movies = [
       title: "The Godfather",
       year: "1972",
       rating: "9.2",
+      id: '4',
       description: "The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to his reluctant son.",
       comments: []
     },
@@ -48,6 +52,7 @@ let movies = [
       title: "Pulp Fiction",
       year: "1994",
       rating: "8.9",
+      id: '5',
       description: "The lives of two mob hitmen, a boxer, a gangster and his wife, and a pair of diner bandits intertwine in four tales of violence and redemption.",
       comments: []
     },
@@ -56,6 +61,7 @@ let movies = [
       title: "The Shining",
       year: "1980",
       rating: "8.4",
+      id: '6',
       description: "A family heads to an isolated hotel for the winter where a sinister presence influences the father into violence, while his psychic son sees horrific forebodings from both past and future.",
       comments: [{
         name: "Jane",
@@ -67,6 +73,12 @@ let movies = [
 
 
 const cardContainer = document.getElementById('cardContainer')  
+const cardInfo = document.getElementById('cardInfo')
+const movieImage = document.getElementById('movieImage')
+const movieDescription = document.getElementById('movieDescription')
+const userReview = document.getElementById('userReview')
+const movieComment = document.getElementById('movieComment')
+
 
 
 showMovies()
@@ -79,6 +91,7 @@ function showMovies(){
         card.style.width = '25%'
         card.style.textAlign = 'center'
         card.style.margin = '5px'
+        card.setAttribute('id', item.id)
 
         let image = document.createElement('img')
         image.src = item.image
@@ -94,6 +107,9 @@ function showMovies(){
         let rating = document.createElement('div')
         rating.innerText = item.rating
 
+
+        card.addEventListener('click', openCard)
+
         card.appendChild(image)
         card.appendChild(title)
         card.appendChild(year)
@@ -103,3 +119,25 @@ function showMovies(){
     })
 
 }
+
+function openCard(event){
+
+  cardContainer.style.display = 'none'
+
+  cardInfo.style.display = 'block'
+
+  movieImage.src = event.path[0].currentSrc
+
+  let id = event.path[1].id
+
+  let newCard = movies.filter(el => el.id === id)
+
+  console.log(newCard)
+
+  movieDescription.innerText = newCard[0].description
+
+  // userReview.innerText = newCard[0].comments[0].comment
+
+  
+}
+
