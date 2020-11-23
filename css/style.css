@@ -1,0 +1,85 @@
+/*# sourceMappingURL=style.css.map */
+
+body {
+  font-family: "Fascinate", cursive;
+  transition: 0.8s;
+}
+
+.dFlex {
+  display: flex;
+}
+
+.column {
+  flex-direction: column;
+}
+
+.textCent {
+  text-align: center;
+}
+
+.justifyCenter {
+  justify-content: center;
+}
+
+.alignCenter {
+  align-items: center;
+}
+
+.justEnd {
+  justify-content: end;
+}
+
+.alignEnd {
+  align-items: flex-end;
+}
+
+.spaceBetween {
+  justify-content: space-between;
+}
+
+.spaceAround {
+  justify-content: space-around;
+}
+
+.spaceEven{
+  justify-content: space-evenly;
+}
+
+.alignEven{
+  align-items: space-evenly;
+}
+
+.cont90 {
+  width: 90%;
+  margin: auto;
+}
+
+.w40 {
+  width: 45%;
+}
+
+.w20 {
+  width: 10%;
+}
+
+.w100 {
+  width: 100%;
+}
+
+.h100{
+  height: 100%;
+}
+
+.textEnd {
+  text-align: end;
+}
+
+.h30{
+  height: 30%;
+}
+
+.mTop{
+  margin-top: 50px;
+}
+
+
