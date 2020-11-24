@@ -32,7 +32,7 @@ let movies = [
         {
           name: "Marry",
           comment: "Put on a happy face :)"
-          
+         
         },
         {
           name: "Batman",
@@ -68,7 +68,7 @@ let movies = [
       description: "A family heads to an isolated hotel for the winter where a sinister presence influences the father into violence, while his psychic son sees horrific forebodings from both past and future.",
       comments: [{
         name: "Jane",
-        comment: "Soundtrack is epic"
+        comment: "Soundtrack is epic",
         
       }]
     },
@@ -163,7 +163,10 @@ function openCard(event){
 
 function showComments(){
   userReview.innerHTML = ''
-  movies[currentMovie].comments.map(item =>{
+  movies[currentMovie].comments.map((item, index) =>{
+
+    item.id = index
+
     let name = document.createElement('h5')
     name.innerText = item.name
 
@@ -182,6 +185,7 @@ function showComments(){
     userReview.appendChild(comment)
     userReview.appendChild(delCommButton)
   })
+  console.log(movies);
 }
 
 function inputComment(){
@@ -200,9 +204,8 @@ function showMoviesAgain(){
   cardInfo.style.display = 'none'
 }
 
-function deleteComment(event){
-  console.log(event)
-  // movies[currentMovie].comments.filter
+function deleteComment(){
+  movies[currentMovie].comments.filter(el=> el.id === commentId)
 }
 
 function openModal(){
