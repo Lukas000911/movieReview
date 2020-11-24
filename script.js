@@ -78,9 +78,10 @@ const movieImage = document.getElementById('movieImage')
 const movieDescription = document.getElementById('movieDescription')
 const userReview = document.getElementById('userReview')
 const movieComment = document.getElementById('movieComment')
+const submitButton = document.getElementById('submitButton')
+const backButton = document.getElementById('backButton')
 
-
-
+backButton.addEventListener('click',showMoviesAgain)
 showMovies()
 
 function showMovies(){
@@ -120,6 +121,8 @@ function showMovies(){
 
 }
 
+let currentMovie
+
 function openCard(event){
 
   cardContainer.style.display = 'none'
@@ -127,17 +130,46 @@ function openCard(event){
   cardInfo.style.display = 'block'
 
   movieImage.src = event.path[0].currentSrc
+  movieImage.style.width = '50%'
 
   let id = event.path[1].id
 
   let newCard = movies.filter(el => el.id === id)
-
-  console.log(newCard)
+  currentMovie = movies.findIndex(el => el.id === id)
 
   movieDescription.innerText = newCard[0].description
 
-  // userReview.innerText = newCard[0].comments[0].comment
+  submitButton.addEventListener('click', inputComment)
 
-  
+  showComments()
+
 }
 
+function showComments(){
+  userReview.innerHTML = ''
+  movies[currentMovie].comments.map(item =>{
+    let name = document.createElement('h5')
+    name.innerText = item.name
+    let comment = document.createElement('div')
+    comment.style.padding = '5px'
+    comment.innerText = item.comment
+    userReview.appendChild(name)
+    userReview.appendChild(comment)
+  })
+}
+
+function inputComment(){
+  let inputValue = document.getElementById('movieComment').value;
+  let myComment = {
+    name: 'Lukas',
+    comment: inputValue
+  }
+  movies[currentMovie].comments.push(myComment);
+  showComments()
+}
+
+function showMoviesAgain(){
+  cardContainer.style.display = 'flex'
+
+  cardInfo.style.display = 'none'
+}
