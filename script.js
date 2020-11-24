@@ -18,6 +18,7 @@ let movies = [
       comments: [{
         name: "John",
         comment: "So boring, i fall asleep to it and hibernated through whole winter"
+        
       }]
     },
     {
@@ -31,10 +32,12 @@ let movies = [
         {
           name: "Marry",
           comment: "Put on a happy face :)"
+          
         },
         {
           name: "Batman",
           comment: "My parents was not impressed with this"
+          
         },
       ]
     },
@@ -66,6 +69,7 @@ let movies = [
       comments: [{
         name: "Jane",
         comment: "Soundtrack is epic"
+        
       }]
     },
   ]
@@ -80,8 +84,20 @@ const userReview = document.getElementById('userReview')
 const movieComment = document.getElementById('movieComment')
 const submitButton = document.getElementById('submitButton')
 const backButton = document.getElementById('backButton')
+const addMovie = document.getElementById('addMovie')
+const movieModal = document.getElementById('movieModal')
+const addPicture = document.getElementById('addPicture')
+const addTitle = document.getElementById('addTitle')
+const addYear = document.getElementById('addYear')
+const addRating = document.getElementById('addRating')
+const addDescription = document.getElementById('addDescription')
+const fillMovieArr = document.getElementById('fillMovieArr')
+
 
 backButton.addEventListener('click',showMoviesAgain)
+addMovie.addEventListener('click', openModal)
+fillMovieArr.addEventListener('click',fillMovies)
+
 showMovies()
 
 function showMovies(){
@@ -150,11 +166,21 @@ function showComments(){
   movies[currentMovie].comments.map(item =>{
     let name = document.createElement('h5')
     name.innerText = item.name
+
     let comment = document.createElement('div')
     comment.style.padding = '5px'
     comment.innerText = item.comment
+
+    let delCommButton = document.createElement('button')
+    delCommButton.innerText = 'delete'
+    delCommButton.style.height = "20px"
+    delCommButton.style.width = '55px'
+
+    delCommButton.addEventListener('click', deleteComment)
+
     userReview.appendChild(name)
     userReview.appendChild(comment)
+    userReview.appendChild(delCommButton)
   })
 }
 
@@ -172,4 +198,36 @@ function showMoviesAgain(){
   cardContainer.style.display = 'flex'
 
   cardInfo.style.display = 'none'
+}
+
+function deleteComment(event){
+  console.log(event)
+  // movies[currentMovie].comments.filter
+}
+
+function openModal(){
+  cardContainer.style.display = 'none'
+  movieModal.style.display = 'flex'
+}
+
+let newMovie = {}
+
+function fillMovieInfo(){
+  
+  newMovie.image = addPicture.value
+  newMovie.title = addTitle.value
+  newMovie.year = addYear.value
+  newMovie.rating = addRating.value
+  newMovie.description = addDescription.value
+  newMovie.id = String(movies.length + 1)
+  movies.push(newMovie)
+  console.log(movies)
+}
+
+function fillMovies(){
+  fillMovieInfo()
+  cardContainer.style.display = 'flex'
+  movieModal.style.display = 'none'
+  cardContainer.innerHTML = ''
+  showMovies()
 }
